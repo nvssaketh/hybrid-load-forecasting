@@ -1,0 +1,31 @@
+
+    HYBRID CNN-SNN ELECTRICITY LOAD FORECASTING
+================================================
+
+
+TECHNICAL IMPLEMENTATION:
+- CNN: Enhanced version of original LSTM approach with convolutional layers
+- Real SNN: Implemented using snnTorch with genuine spiking neurons
+    * Leaky Integrate-and-Fire (LIF) neuron model
+    * Membrane potential dynamics over 25 time steps
+    * Spike generation and temporal processing
+    * Biologically realistic neural computation
+- Hybrid: Weighted combination (60% CNN, 40% Real SNN)
+
+DATA PROCESSING:
+- Dataset: 4899 hourly electricity load points from 2016
+- Preprocessing: Same methodology as original load_forecasting.py
+- Sequence length: 22 hours for prediction
+- Train/test split: 90%/10% (same as original)
+- Data normalization: Mean-centered (shifted value: 14.8254)
+
+MODEL PERFORMANCE:
+┌─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐
+│     Model   │     MSE     │    RMSE     │     MAE     │    MAPE     │
+├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+│ CNN         │ 1.446389 │ 1.202659 │ 0.955039 │ 113.06%   │
+│ Real SNN    │ 0.552718 │ 0.743450 │ 0.598598 │  81.12%   │
+│ True Hybrid │ 0.842919 │ 0.918106 │ 0.706304 │  86.17%   │
+└─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘
+
+
